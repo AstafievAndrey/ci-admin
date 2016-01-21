@@ -18,8 +18,15 @@ class Categories_model extends CI_Model{
     public function getCategories($limit) {
 	return array(
 	    "count"=>$this->db->query("SELECT count(*) as count FROM `category`"),
-	    "categ"=>$this->db->query("SELECT * FROM `category` ORDER BY `id` DESC LIMIT ?,10",array($limit))
+	    "categ"=>$this->db->query("SELECT * FROM `category` WHERE `id`!=0 ORDER BY `id` DESC LIMIT ?,10",array($limit))
 	);
+    }
+    
+    //удалим запись из бд
+    public function delete($id) {
+	$this->db->query("UPDATE `pages` SET `category_id`=0 WHERE `category_id`=".(int)$id);
+	$this->db->query("UPDATE `products` SET `category_id`=0 WHERE `category_id`=".(int)$id);
+	return $this->db->query("DELETE from `category` WHERE `id`=".(int)$id);
     }
     
      //получим информацию по категории

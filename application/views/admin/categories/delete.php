@@ -1,8 +1,44 @@
-<?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+    <div class="col-md-10 col-sm-9">
+	<div class="row">
+	    <div class="col-sm-12">
+		<h4>Вы действительно хотите удалить категорию:<br>"<?=$category->name?>"?</h4>
+	    </div>
+	    <div class="col-sm-12">
+		<?php
+		    if(isset($_SERVER["HTTP_REFERER"])&&(strpos($_SERVER["HTTP_REFERER"], base_url()."admin/categories"))
+			&&!(strpos($_SERVER["HTTP_REFERER"], base_url()."admin/categories/delete"))){
+		?>
+			<a href="<?php echo $_SERVER["HTTP_REFERER"];?>">
+			    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> 
+			    Вернуться обратно
+			</a>
+		<?php
+		    }
+		?>
+	    </div>
+	    <div class="col-sm-12">
+		<form class="form-inline" method="post">
+		    <?php
+			if(isset($_SERVER["HTTP_REFERER"])&&(strpos($_SERVER["HTTP_REFERER"], base_url()."admin/categories"))
+			    &&!(strpos($_SERVER["HTTP_REFERER"], base_url()."admin/categories/delete"))){
+			    echo "<input name='redirect' type='hidden' value='".$_SERVER["HTTP_REFERER"]."' />";
+			}else{
+			    echo "<input name='redirect' type='hidden' value='/admin/categories' />";
+			}
+		    ?>
+		    <input name="id" type="hidden" value="<?=$id?>" />
+		    <div class="form-group">
+			<input type="radio" name="delete" id="optionsRadios1" value="1" checked>
+			да
+		    </div>
+		    <div class="form-group">
+			<input type="radio" name="delete" id="optionsRadios1" value="0">
+			нет
+		    </div>
+		    <br />
+		    <button type="submit" class="btn btn-default">Отправить</button>
+		</form>
+	    </div>
+	</div>
+    </div>
+</div>

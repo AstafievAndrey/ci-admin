@@ -35,6 +35,23 @@ class Categories extends CI_Controller {
 		);
     }
     
+    public function delete($id=NULL){
+	if(is_null($id)){redirect(base_url()."admin/categories");}
+	if(is_null($this->input->post("delete"))){
+	    $this->load->view("admin/public/head");
+	    $this->load->view("admin/public/side-bar");
+	    $this->load->view("admin/categories/delete",array(
+		    "id"=>$id,
+		    "category"=>$this->categories_model->getCategory((int)$id)->result()[0]
+		));
+	}else{
+	    if((int)$this->input->post("delete")==1){
+		$this->categories_model->delete((int)$this->input->post("id"));
+	    }
+	    redirect($this->input->post("redirect"));
+	}
+    }
+    
     public function edit($id=NULL) {
 	if (is_null($id)) {redirect(base_url()."admin/categories");}
 	$this->load->view("admin/public/head");
