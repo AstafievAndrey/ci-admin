@@ -1,7 +1,7 @@
     <div class="col-md-10 col-sm-9 cont">
 	<div class="row">
 	    <div class="col-sm-3">
-		<a href="/admin/products/add">Добавить страницу</a>
+		<a href="/admin/products/add">Добавить товар</a>
 	    </div>
 	</div>
 	<div class="row" style="margin: 4px 5px;">
