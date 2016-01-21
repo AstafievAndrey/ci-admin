@@ -11,7 +11,7 @@
 		    <a href="/admin/products">Товары</a>
 	    </div>
 	    <div class="row">
-		    <a href="/admin/сategories">Категории</a>
+		    <a href="/admin/categories">Категории</a>
 	    </div>
 	    <div class="row">
 		    <a href="/admin/files">Файлы</a>
