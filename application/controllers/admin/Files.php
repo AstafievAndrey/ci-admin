@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
- *Входной файл для админки, тут навигация по админки 
+ *Загрузка/удаление файлов
  *  
  */
 
