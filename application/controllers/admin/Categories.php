@@ -35,10 +35,36 @@ class Categories extends CI_Controller {
 		);
     }
     
+    public function edit($id=NULL) {
+	if (is_null($id)) {redirect(base_url()."admin/categories");}
+	$this->load->view("admin/public/head");
+	$this->load->view("admin/public/side-bar");
+	$this->load->view("admin/categories/edit",array(
+	    "category"=>$this->categories_model->getCategory($id)->result()[0]
+	));
+    }
+    
     public function add() {
 	$this->load->view("admin/public/head");
 	$this->load->view("admin/public/side-bar");
 	$this->load->view("admin/categories/add");
+    }
+    
+     public function form_valid_edit(){
+	$this->load->helper('form');
+	$this->load->library('form_validation');
+	($this->input->post("old_translit")==$this->input->post("translit"))
+	    ?$this->form_validation->set_rules($this->categories_model->config_validation_edit)
+	    :$this->form_validation->set_rules($this->categories_model->config_validation_add);
+	if ($this->form_validation->run() == FALSE){
+	    echo validation_errors();
+	}else{
+	    if(validation_errors()==""){
+		redirect(base_url()."admin/categories/edit/".$this->categories_model->update());
+	    }else{
+		echo validation_errors();
+	    }
+	} 
     }
     
     public function form_valid_add(){
